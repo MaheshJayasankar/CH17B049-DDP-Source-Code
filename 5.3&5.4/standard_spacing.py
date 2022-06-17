@@ -1,5 +1,6 @@
 # Adaptive Spacing algorithm
 
+import pickle
 import matplotlib.pyplot as plt
 from event_sequence_utility import SetUpEnv, NetworkMaxFitness, RunResults
 import numpy as np
@@ -27,16 +28,20 @@ ADA_DROP_EXIT_DICT = {0:0, 1:1}
 
 def SpacingOptimization(drops, params = ADA_DEFAULT_PARAMS, seed = 0, DROP_EXIT_DICT = ADA_DROP_EXIT_DICT):
     startTime = time.time()
-    runResults = NetworkMaxFitness(drops, DROP_EXIT_DICT, params, seed= seed, numIter= 40, returnAllStats=True)
+    runResults = NetworkMaxFitness(drops, DROP_EXIT_DICT, params, seed= seed, numIter= 1000, returnAllStats=True)
     print("StaSpacing: Realisation {} done".format(seed))
     totTime = time.time() - startTime
-    return RunResults(totTime, runResults.fit_hist, runResults.best_fit, runResults.best_fit_spacing)
+    print("Time Taken = {}sec".format(totTime))
+    finalRunResults = RunResults(totTime, runResults.fit_hist, runResults.best_fit, runResults.best_fit_spacing)
+    with open("standard_spacing_seed_{}.pkl".format(seed), 'wb') as outfile:
+        pickle.dump(finalRunResults, outfile)
+    return finalRunResults
 
 
 if __name__ == "__main__":
-    num_realisations = 20
+    seeds = range(10)
     resultList = []
-    for real_idx in range(num_realisations):
+    for real_idx in seeds:
         np.random.seed(real_idx)
         # Initialize
         runResults = SpacingOptimization(drops, seed=real_idx)
