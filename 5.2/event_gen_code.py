@@ -707,7 +707,7 @@ def CheckFeasibility(droplet_positions_history, dm_drop = -1):
             return True, 1e-9
     return check_feasibility(droplet_positions_history)
 
-def NewRunTest(seed_list, iter_count = 250, modify = False, new_eps = 1, new_eps_anl = False):
+def NewRunTest(seed_list, iter_count = 500, modify = False, new_eps = 1, new_eps_anl = False):
     
     sim_sys = SimulationSystem(grid_dim, source_nodes, sink_nodes, droplet_count, droplet_type_list)
 

@@ -3,7 +3,7 @@ from event_gen_code import NewRunTest
 
 filename = "batcha1.pkl"
 seed_list = [0,1,2,3,4]
-iter_count = 250
+iter_count = 500
 
 res_dict = NewRunTest(seed_list,iter_count)
 
