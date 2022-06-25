@@ -17,7 +17,7 @@ grid_dim = 3
 source_nodes = [1]
 sink_nodes = [10,12]
 droplet_count = 4
-droplet_type_list = [[2,1,1,2]]
+droplet_type_list = [[1,2,2,1]]
 # Sorting problem: the droplet type should pass through which sink node?
 target_exit_dict = {1: 0, 2: 1}
 
